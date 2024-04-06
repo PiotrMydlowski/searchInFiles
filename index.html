@@ -1,0 +1,140 @@
+<html>
+<head>
+<title>Instruction search</title>
+
+<style>
+
+body
+{
+	background-color: #000000;
+	color: lightgray;
+	font-size: 20px;
+	font-family: 'Arial', monospace;
+}
+
+#menu
+{
+}
+
+.language
+{
+	font-size: 14px;
+	display: inline;
+	float: right;
+	padding: 10px;
+}
+
+.language:hover
+{
+	color: orange;
+	cursor: pointer;
+}
+
+</style>
+
+</head>
+
+<body>
+
+	
+
+	<div id="languageMenu" class="menu">
+		<div id="langEN" class="language">EN</div>
+		<div id="langPL" class="language">PL</div>
+	</div>
+	
+	<br><br>
+
+	<h1 id="mainTitle"></h1>
+	
+	<div id="searchByTextLabel">
+	</div>
+	
+	<div id="searchByTextInput">
+		<input type="text" placeholder="?" id="inputCode" onchange="searchByText()">
+	</div>
+	
+	<div id="searchByTextResultsLabel">
+	</div>
+	
+	<div id="searchByTextResultsList">
+	</div>
+		
+
+<script>
+
+var labels = [];
+var languages = ["EN","PL"];
+var currentLanguage;
+
+labels.push({
+	mainTitle:"Instruction search",
+	searchByTextLabel:"Enter wanted tags (confirm with enter):",
+	results:"Results:",
+	empty:"Nothing found",
+	errorCode:"Input error"
+});
+
+labels.push({
+	mainTitle:"Przeszukiwanie instrukcji",
+	searchByTextLabel:"Wprowadz szukane frazy (zatwierdz za pomoca enter):",
+	results:"Wyniki:",
+	empty:"Nie znaleziono",
+	errorCode:"Blad wprowadzania"
+});
+
+//main window onload function, starts after downloading
+window.onload = function(){
+	onLoadMain();
+}
+
+function onLoadMain(){
+	
+	var languageMenuText = "";
+
+	clearChoice();
+
+	for(i=0 ; i<languages.length ; i++)
+	{	
+		languageMenuText += '<div id="lang'+languages[i];
+		languageMenuText += '" class="language" onclick="refreshLanguage('+i;
+		languageMenuText += ')">'+languages[i]+'</div>';
+	}	
+	document.getElementById("languageMenu").innerHTML = languageMenuText;
+	
+	refreshLanguage(1);
+	
+}
+
+function searchByText(){
+	clearChoice();
+}
+
+function clearChoice(){
+
+}
+
+function refreshLanguage(arg){
+	
+	clearChoice();
+	var tmp = 0;
+	if(languages[arg] == "EN")
+	{
+		tmp = 0;
+		currentLanguage = 0;
+	}
+	else if(languages[arg] == "PL")
+	{
+		tmp = 1;
+		currentLanguage = 1;
+	}
+	
+	document.getElementById("mainTitle").innerHTML = labels[tmp].mainTitle;
+	document.getElementById("searchByTextLabel").innerHTML = labels[tmp].searchByTextLabel;	
+
+}
+
+</script>
+
+</body>
+</html>

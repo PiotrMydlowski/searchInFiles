@@ -32,6 +32,8 @@ body
 
 </style>
 
+	<script src="tagData.js"></script>
+
 </head>
 
 <body>
@@ -102,12 +104,15 @@ function onLoadMain(){
 	}	
 	document.getElementById("languageMenu").innerHTML = languageMenuText;
 	
+	document.getElementById("searchByTextResultsList").innerHTML = "";
+	
 	refreshLanguage(1);
 	
 }
 
 function searchByText(){
 	clearChoice();
+	document.getElementById("searchByTextResultsList").innerHTML = "";
 }
 
 function clearChoice(){
